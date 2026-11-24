@@ -1,10 +1,8 @@
-// HotLaunch entrypoint for the pump.fun replay sprint (paper bot, real ranking).
-//
-// The harness speaks the agent-fun/replay/v2 protocol on stdin/stdout. The
-// vendored shim owns the wire; all trading logic lives in strategy.ts. This
-// file only wires the two together. No randomness, no wall clock, no network.
+// LeanSnipe v2 — pump.fun replay paper bot (agent-fun/replay/v2).
+// The grader runs `node /bot/main.ts`; the strategy lives in strategy.ts and the SDK shim is
+// the kit's sdk/ts/makefun-bot.ts, vendored byte for byte.
 
 import { runBot } from './vendor/makefun-bot.ts';
-import { createHotLaunchBot } from './strategy.ts';
+import { createStrategy, DEFAULT_PARAMS } from './strategy.ts';
 
-await runBot(createHotLaunchBot());
+await runBot(createStrategy(DEFAULT_PARAMS));
